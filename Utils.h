@@ -8,6 +8,9 @@ using namespace std;
 class Utils
 {
 public:
+    // Set the current transaction ID
+    static void setCurrentId(int id);
+
     // Generate unique transaction ID
     static int generateTransactionId();
 

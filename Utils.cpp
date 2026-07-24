@@ -4,11 +4,19 @@
 
 using namespace std;
 
+// Stores the latest transaction ID
+static int currentId = 1000;
+
+// Set the starting transaction ID
+void Utils::setCurrentId(int id)
+{
+    currentId = id;
+}
+
 // Generate a unique transaction ID
 int Utils::generateTransactionId()
 {
-    static int id = 1000;
-    return ++id;
+    return ++currentId;
 }
 
 // Basic date validation

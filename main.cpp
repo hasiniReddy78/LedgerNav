@@ -1,3 +1,4 @@
+#include "FileManager.h"
 #include <iostream>
 #include <limits>
 #include "Utils.h"
@@ -9,6 +10,15 @@ using namespace std;
 int main()
 {
     Ledger ledger;
+
+    // Load previously saved transactions
+    vector<Transaction> loadedTransactions = FileManager::loadTransactions();
+
+    for (const auto &transaction : loadedTransactions)
+    {
+        ledger.addTransaction(transaction);
+    }
+
     int choice;
 
     do
@@ -57,6 +67,8 @@ int main()
 
             ledger.addTransaction(transaction);
 
+            // Save all transactions to file
+            FileManager::saveTransactions(ledger.getTransactions());
             cout << "\nTransaction added successfully!\n\n";
 
             break;
