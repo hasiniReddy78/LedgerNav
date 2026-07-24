@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include "Utils.h"
 #include "Ledger.h"
 #include "Transaction.h"
@@ -7,35 +8,82 @@ using namespace std;
 
 int main()
 {
-    Utils::printHeader();
-
     Ledger ledger;
+    int choice;
 
-    // Sample transactions
-    Transaction t1(
-        Utils::generateTransactionId(),
-        "24-07-2026",
-        250.50,
-        "Food",
-        "Expense",
-        "Burger and Fries"
-    );
+    do
+    {
+        Utils::printHeader();
 
-    Transaction t2(
-        Utils::generateTransactionId(),
-        "24-07-2026",
-        5000,
-        "Salary",
-        "Income",
-        "Monthly Salary"
-    );
+        cout << "1. Add Transaction\n";
+        cout << "2. View Transactions\n";
+        cout << "3. Exit\n\n";
 
-    ledger.addTransaction(t1);
-    ledger.addTransaction(t2);
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    ledger.displayTransactions();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    cout << "\nThank you for using LedgerNav!\n";
+        switch (choice)
+        {
+        case 1:
+        {
+            string date, category, type, description;
+            double amount;
+
+            cout << "\nEnter Date (DD-MM-YYYY): ";
+            getline(cin, date);
+
+            cout << "Enter Amount: ";
+            cin >> amount;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Enter Category: ";
+            getline(cin, category);
+
+            cout << "Enter Type (Income/Expense): ";
+            getline(cin, type);
+
+            cout << "Enter Description: ";
+            getline(cin, description);
+
+            Transaction transaction(
+                Utils::generateTransactionId(),
+                date,
+                amount,
+                category,
+                type,
+                description);
+
+            ledger.addTransaction(transaction);
+
+            cout << "\nTransaction added successfully!\n\n";
+
+            break;
+        }
+
+        case 2:
+
+            ledger.displayTransactions();
+            break;
+
+        case 3:
+
+            cout << "\nThank you for using LedgerNav!\n";
+            break;
+
+        default:
+
+            cout << "\nInvalid Choice!\n";
+        }
+
+        if (choice != 3)
+        {
+            cout << "\nPress Enter to continue...";
+            cin.get();
+        }
+
+    } while (choice != 3);
 
     return 0;
 }
