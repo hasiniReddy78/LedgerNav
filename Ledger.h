@@ -1,25 +1,30 @@
 #ifndef LEDGER_H
 #define LEDGER_H
 
-#include <vector>
-#include "Transaction.h"
-
-using namespace std;
+#include "Node.h"
 
 class Ledger
 {
 private:
-    vector<Transaction> transactions;
+    Node *head;
+    Node *tail;
 
 public:
-    // Add a transaction
+    // Constructor & Destructor
+    Ledger();
+    ~Ledger();
+
+    // Core Operations
     void addTransaction(const Transaction &transaction);
-
-    // Display all transactions
     void displayTransactions() const;
+    void displayFinancialSummary() const;
 
-    // Get all transactions
-    vector<Transaction>& getTransactions();
+    // Utility Functions
+    int getHighestTransactionId() const;
+
+    // Getters
+    Node *getHead() const;
+    Node *getTail() const;
 };
 
 #endif

@@ -1,2 +1,2 @@
-1001|10-11-2006|12|food|expense|chocolate
-1002|20-33-4032|45|essentials|expense|soap
+1001|10-11-2006|200|Food|Income|Vegetables
+1002|10-11-2006|350|gd|Expense|3dfg

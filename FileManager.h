@@ -4,18 +4,22 @@
 #include <vector>
 #include "Transaction.h"
 #include "User.h"
+#include "Node.h"
+#include "Ledger.h"
 
 using namespace std;
 
 class FileManager
 {
 public:
-    // Transaction file operations
-    static void saveTransactions(const vector<Transaction>& transactions);
-    static vector<Transaction> loadTransactions();
+    // Save transactions from Doubly Linked List
+    static void saveTransactions(Node *head);
 
-    // User file operations
-    static void saveUsers(const vector<User>& users);
+    // Load transactions from file
+    static void loadTransactions(Ledger &ledger);;
+
+    // User operations
+    static void saveUsers(const vector<User> &users);
     static vector<User> loadUsers();
 };
 

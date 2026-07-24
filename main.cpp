@@ -11,13 +11,11 @@ int main()
 {
     Ledger ledger;
 
-    // Load previously saved transactions
-    vector<Transaction> loadedTransactions = FileManager::loadTransactions();
+    // Load previously saved transactions directly into the linked list
+    FileManager::loadTransactions(ledger);
 
-    for (const auto &transaction : loadedTransactions)
-    {
-        ledger.addTransaction(transaction);
-    }
+    // Initialize the transaction ID generator
+    Utils::setCurrentId(ledger.getHighestTransactionId());
 
     int choice;
 
@@ -27,7 +25,8 @@ int main()
 
         cout << "1. Add Transaction\n";
         cout << "2. View Transactions\n";
-        cout << "3. Exit\n\n";
+        cout << "3. Financial Summary\n";
+        cout << "4. Exit\n\n";
 
         cout << "Enter your choice: ";
         cin >> choice;
@@ -40,6 +39,7 @@ int main()
         {
             string date, category, type, description;
             double amount;
+            int typeChoice;
 
             cout << "\nEnter Date (DD-MM-YYYY): ";
             getline(cin, date);
@@ -48,11 +48,35 @@ int main()
             cin >> amount;
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+            cout << "Select Transaction Type\n";
+            cout << "1. Income\n";
+            cout << "2. Expense\n";
+            cout << "3. Investment\n";
+            cout << "Enter choice: ";
+            cin >> typeChoice;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            switch (typeChoice)
+            {
+            case 1:
+                type = "Income";
+                break;
+
+            case 2:
+                type = "Expense";
+                break;
+
+            case 3:
+                type = "Investment";
+                break;
+
+            default:
+                cout << "\nInvalid transaction type!\n";
+                continue;
+            }
+
             cout << "Enter Category: ";
             getline(cin, category);
-
-            cout << "Enter Type (Income/Expense): ";
-            getline(cin, type);
 
             cout << "Enter Description: ";
             getline(cin, description);
@@ -68,34 +92,35 @@ int main()
             ledger.addTransaction(transaction);
 
             // Save all transactions to file
-            FileManager::saveTransactions(ledger.getTransactions());
-            cout << "\nTransaction added successfully!\n\n";
+            FileManager::saveTransactions(ledger.getHead());
 
+            cout << "\nTransaction added successfully!\n";
             break;
         }
 
         case 2:
-
             ledger.displayTransactions();
             break;
 
         case 3:
+            ledger.displayFinancialSummary();
+            break;
 
+        case 4:
             cout << "\nThank you for using LedgerNav!\n";
             break;
 
         default:
-
             cout << "\nInvalid Choice!\n";
         }
 
-        if (choice != 3)
+        if (choice != 4)
         {
             cout << "\nPress Enter to continue...";
             cin.get();
         }
 
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }

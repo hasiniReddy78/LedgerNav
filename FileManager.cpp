@@ -5,28 +5,36 @@
 using namespace std;
 
 // Save transactions to file
-void FileManager::saveTransactions(const vector<Transaction>& transactions)
+void FileManager::saveTransactions(Node *head)
 {
     ofstream file("data/transactions.txt");
 
-    for (const auto &transaction : transactions)
+    Node *current = head;
+
+    while (current != nullptr)
     {
-        file << transaction.getId() << "|"
-             << transaction.getDate() << "|"
-             << transaction.getAmount() << "|"
-             << transaction.getCategory() << "|"
-             << transaction.getType() << "|"
-             << transaction.getDescription() << endl;
+        Transaction t = current->transaction;
+
+        file << t.getId() << "|"
+             << t.getDate() << "|"
+             << t.getAmount() << "|"
+             << t.getCategory() << "|"
+             << t.getType() << "|"
+             << t.getDescription() << endl;
+
+        current = current->next;
     }
 
     file.close();
 }
 
 // Load transactions from file
-vector<Transaction> FileManager::loadTransactions()
+void FileManager::loadTransactions(Ledger &ledger)
 {
-    vector<Transaction> transactions;
     ifstream file("data/transactions.txt");
+
+    if (!file.is_open())
+        return;
 
     string line;
 
@@ -43,20 +51,18 @@ vector<Transaction> FileManager::loadTransactions()
         getline(ss, type, '|');
         getline(ss, description);
 
-        transactions.push_back(
-            Transaction(
-                stoi(id),
-                date,
-                stod(amount),
-                category,
-                type,
-                description
-            )
-        );
+        Transaction transaction(
+            stoi(id),
+            date,
+            stod(amount),
+            category,
+            type,
+            description);
+
+        ledger.addTransaction(transaction);
     }
 
     file.close();
-    return transactions;
 }
 
 // Save users
