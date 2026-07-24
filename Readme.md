@@ -13,7 +13,7 @@ LedgerNav is a C++ console-based transaction history navigator designed using Ob
 ## Technologies Used
 
 - C++
-- STL (Vector)
+- Doubly LInked LIst
 - File Handling
 - Object-Oriented Programming
 
