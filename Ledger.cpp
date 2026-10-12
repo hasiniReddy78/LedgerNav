@@ -1,20 +1,32 @@
 #include "Ledger.h"
+<<<<<<< HEAD
 #include "Exceptions.h"
 #include <iostream>
 #include <iomanip>
 #include <map>
+=======
+#include <iostream>
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 
 using namespace std;
 
 // Constructor
+<<<<<<< HEAD
 Ledger::Ledger(int userId)
     : head(nullptr), tail(nullptr), current(nullptr), account(userId)
 {
+=======
+Ledger::Ledger()
+{
+    head = nullptr;
+    tail = nullptr;
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 }
 
 // Destructor
 Ledger::~Ledger()
 {
+<<<<<<< HEAD
     clear();
 }
 
@@ -82,10 +94,32 @@ void Ledger::addTransaction(Transaction *transaction)
 
     Node *newNode = new Node(transaction);
 
+=======
+    Node *current = head;
+
+    while (current != nullptr)
+    {
+        Node *nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+
+    head = nullptr;
+    tail = nullptr;
+}
+
+// Add transaction at the end
+void Ledger::addTransaction(const Transaction &transaction)
+{
+    Node *newNode = new Node(transaction);
+
+    // Empty list
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
     if (head == nullptr)
     {
         head = newNode;
         tail = newNode;
+<<<<<<< HEAD
     }
     else
     {
@@ -302,6 +336,18 @@ void Ledger::navigateHistory()
 }
 
 // Display all transactions with history state indication
+=======
+        return;
+    }
+
+    // Insert at the end
+    tail->next = newNode;
+    newNode->prev = tail;
+    tail = newNode;
+}
+
+// Display all transactions
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 void Ledger::displayTransactions() const
 {
     if (head == nullptr)
@@ -310,6 +356,7 @@ void Ledger::displayTransactions() const
         return;
     }
 
+<<<<<<< HEAD
     Node *curr = head;
     bool isForward = (current == nullptr);
 
@@ -334,6 +381,51 @@ void Ledger::displayTransactions() const
 void Ledger::displayFinancialSummary() const
 {
     account.displayAccountSummary();
+=======
+    Node *current = head;
+
+    while (current != nullptr)
+    {
+        current->transaction.display();
+        current = current->next;
+    }
+}
+
+// Display financial summary
+void Ledger::displayFinancialSummary() const
+{
+    double totalIncome = 0.0;
+    double totalExpense = 0.0;
+    double totalInvestment = 0.0;
+
+    Node *current = head;
+
+    while (current != nullptr)
+    {
+        if (current->transaction.getType() == "Income")
+        {
+            totalIncome += current->transaction.getAmount();
+        }
+        else if (current->transaction.getType() == "Expense")
+        {
+            totalExpense += current->transaction.getAmount();
+        }
+        else if (current->transaction.getType() == "Investment")
+        {
+            totalInvestment += current->transaction.getAmount();
+        }
+
+        current = current->next;
+    }
+
+    cout << "\n========== Financial Summary ==========\n";
+    cout << "Total Income      : Rs. " << totalIncome << endl;
+    cout << "Total Expense     : Rs. " << totalExpense << endl;
+    cout << "Total Investment  : Rs. " << totalInvestment << endl;
+    cout << "Net Cash Balance  : Rs. "
+         << (totalIncome - totalExpense - totalInvestment) << endl;
+    cout << "=======================================\n";
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 }
 
 int Ledger::getHighestTransactionId() const
@@ -342,6 +434,7 @@ int Ledger::getHighestTransactionId() const
         return 1000;
 
     int highestId = 1000;
+<<<<<<< HEAD
     Node *curr = head;
     while (curr != nullptr)
     {
@@ -354,11 +447,30 @@ int Ledger::getHighestTransactionId() const
     return highestId;
 }
 
+=======
+    Node *current = head;
+
+    while (current != nullptr)
+    {
+        if (current->transaction.getId() > highestId)
+        {
+            highestId = current->transaction.getId();
+        }
+
+        current = current->next;
+    }
+
+    return highestId;
+}
+
+// Return head pointer
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 Node *Ledger::getHead() const
 {
     return head;
 }
 
+<<<<<<< HEAD
 Node *Ledger::getTail() const
 {
     return tail;
@@ -791,4 +903,10 @@ void Ledger::displayBudgetStatus(const map<string, double> &budgets) const
         cout << "----------------------------------------------\n";
     }
     cout << "==============================================\n";
+=======
+// Return tail pointer
+Node *Ledger::getTail() const
+{
+    return tail;
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 }

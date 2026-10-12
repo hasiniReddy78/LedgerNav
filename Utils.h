@@ -14,6 +14,7 @@ public:
     // Generate unique transaction ID
     static int generateTransactionId();
 
+<<<<<<< HEAD
     // Basic date validation predicate
     static bool isValidDate(const string &date);
 
@@ -32,3 +33,13 @@ public:
 };
 
 #endif // UTILS_H
+=======
+    // Validate date format (DD-MM-YYYY)
+    static bool isValidDate(const string &date);
+
+    // Print application title
+    static void printHeader();
+};
+
+#endif
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74

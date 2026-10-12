@@ -1,4 +1,5 @@
 #include "Transaction.h"
+<<<<<<< HEAD
 #include "Exceptions.h"
 #include <iomanip>
 #include <sstream>
@@ -17,16 +18,46 @@ Transaction::Transaction(int id, int userId, const string &date, double amount,
 }
 
 // Getters
+=======
+
+Transaction::Transaction()
+{
+    id = 0;
+    date = "";
+    amount = 0.0;
+    category = "";
+    type = "";
+    description = "";
+}
+
+Transaction::Transaction(int id, string date, double amount,
+                         string category, string type,
+                         string description)
+{
+    this->id = id;
+    this->date = date;
+    this->amount = amount;
+    this->category = category;
+    this->type = type;
+    this->description = description;
+}
+
+// Getters
+
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 int Transaction::getId() const
 {
     return id;
 }
 
+<<<<<<< HEAD
 int Transaction::getUserId() const
 {
     return userId;
 }
 
+=======
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 string Transaction::getDate() const
 {
     return date;
@@ -42,29 +73,46 @@ string Transaction::getCategory() const
     return category;
 }
 
+<<<<<<< HEAD
+=======
+string Transaction::getType() const
+{
+    return type;
+}
+
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 string Transaction::getDescription() const
 {
     return description;
 }
 
 // Setters
+<<<<<<< HEAD
+=======
+
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 void Transaction::setId(int id)
 {
     this->id = id;
 }
 
+<<<<<<< HEAD
 void Transaction::setUserId(int userId)
 {
     this->userId = userId;
 }
 
 void Transaction::setDate(const string &date)
+=======
+void Transaction::setDate(string date)
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 {
     this->date = date;
 }
 
 void Transaction::setAmount(double amount)
 {
+<<<<<<< HEAD
     if (amount <= 0.0)
     {
         throw InvalidAmountException("Transaction amount must be strictly positive.");
@@ -82,11 +130,28 @@ void Transaction::setCategory(const string &category)
 }
 
 void Transaction::setDescription(const string &description)
+=======
+    this->amount = amount;
+}
+
+void Transaction::setCategory(string category)
+{
+    this->category = category;
+}
+
+void Transaction::setType(string type)
+{
+    this->type = type;
+}
+
+void Transaction::setDescription(string description)
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 {
     this->description = description;
 }
 
 // Display
+<<<<<<< HEAD
 void Transaction::display() const
 {
     cout << "----------------------------------\n";
@@ -235,4 +300,17 @@ Transaction *TransactionFactory::createTransaction(int id, int userId,
     {
         throw InvalidTransactionException("Unknown transaction type: " + type + ". Must be Income, Expense, or Investment.");
     }
+=======
+
+void Transaction::display() const
+{
+    cout << "----------------------------------\n";
+    cout << "Transaction ID : " << id << endl;
+    cout << "Date           : " << date << endl;
+    cout << "Amount         : " << amount << endl;
+    cout << "Category       : " << category << endl;
+    cout << "Type           : " << type << endl;
+    cout << "Description    : " << description << endl;
+    cout << "----------------------------------\n";
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 }

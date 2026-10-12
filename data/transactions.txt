@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 101|1|24-07-2026|50000|Salary|Income|July Salary
 102|1|25-07-2026|3000|Food|Expense|Groceries
 103|2|26-07-2026|7000|Stocks|Investment|TCS Shares
+=======
+1001|10-11-2006|200|Food|Income|Vegetables
+1002|10-11-2006|350|gd|Expense|3dfg
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74

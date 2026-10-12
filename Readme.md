@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LedgerNav - Transaction History Navigator
 
 > **C++, OOPs, Data Structures | July 2026**
@@ -131,3 +132,27 @@ cl /EHsc /std:c++17 /Fe:LedgerNav.exe main.cpp Transaction.cpp Account.cpp User.
 12. Budget Tracking Dashboard
 13. Logout
 ```
+=======
+# LedgerNav
+
+LedgerNav is a C++ console-based transaction history navigator designed using Object-Oriented Programming principles.
+
+## Features (In Progress)
+
+- Transaction Management
+- User Management
+- File Handling
+- Search & Sort Transactions
+- Monthly Reports
+
+## Technologies Used
+
+- C++
+- Doubly LInked LIst
+- File Handling
+- Object-Oriented Programming
+
+## Project Status
+
+🚧 Under Development
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74

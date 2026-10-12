@@ -1,18 +1,23 @@
 #ifndef LEDGER_H
 #define LEDGER_H
 
+<<<<<<< HEAD
 #include <map>
 #include <string>
 #include "Node.h"
 #include "Account.h"
 
 using namespace std;
+=======
+#include "Node.h"
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 
 class Ledger
 {
 private:
     Node *head;
     Node *tail;
+<<<<<<< HEAD
     Node *current;    // Browser-style navigation history cursor
     Account account;  // Encapsulated financial account state
 
@@ -67,3 +72,25 @@ public:
 };
 
 #endif // LEDGER_H
+=======
+
+public:
+    // Constructor & Destructor
+    Ledger();
+    ~Ledger();
+
+    // Core Operations
+    void addTransaction(const Transaction &transaction);
+    void displayTransactions() const;
+    void displayFinancialSummary() const;
+
+    // Utility Functions
+    int getHighestTransactionId() const;
+
+    // Getters
+    Node *getHead() const;
+    Node *getTail() const;
+};
+
+#endif
+>>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
