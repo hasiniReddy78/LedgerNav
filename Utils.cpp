@@ -1,18 +1,12 @@
 #include "Utils.h"
-<<<<<<< HEAD
 #include "Exceptions.h"
 #include <iostream>
-=======
-#include <iostream>
-#include <ctime>
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 
 using namespace std;
 
 // Stores the latest transaction ID
 static int currentId = 1000;
 
-<<<<<<< HEAD
 void Utils::setCurrentId(int id)
 {
     if (id > currentId)
@@ -21,21 +15,11 @@ void Utils::setCurrentId(int id)
     }
 }
 
-=======
-// Set the starting transaction ID
-void Utils::setCurrentId(int id)
-{
-    currentId = id;
-}
-
-// Generate a unique transaction ID
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 int Utils::generateTransactionId()
 {
     return ++currentId;
 }
 
-<<<<<<< HEAD
 bool Utils::isValidDate(const string &date)
 {
     try
@@ -129,25 +113,4 @@ void Utils::printHeader()
 void Utils::printDivider()
 {
     cout << "-----------------------------------------------------\n";
-=======
-// Basic date validation
-bool Utils::isValidDate(const string &date)
-{
-    if (date.length() != 10)
-        return false;
-
-    if (date[2] != '-' || date[5] != '-')
-        return false;
-
-    return true;
-}
-
-// Print project header
-void Utils::printHeader()
-{
-    cout << "=========================================\n";
-    cout << "          LedgerNav v1.0\n";
-    cout << "    Transaction History Navigator\n";
-    cout << "=========================================\n\n";
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 }

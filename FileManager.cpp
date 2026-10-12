@@ -1,5 +1,4 @@
 #include "FileManager.h"
-<<<<<<< HEAD
 #include "Exceptions.h"
 #include <fstream>
 #include <sstream>
@@ -73,47 +72,12 @@ void FileManager::saveTransactions(Node *head, int userId)
 void FileManager::loadTransactions(Ledger &ledger, int userId)
 {
     ledger.setUserId(userId);
-=======
-#include <fstream>
-#include <sstream>
-
-using namespace std;
-
-// Save transactions to file
-void FileManager::saveTransactions(Node *head)
-{
-    ofstream file("data/transactions.txt");
-
-    Node *current = head;
-
-    while (current != nullptr)
-    {
-        Transaction t = current->transaction;
-
-        file << t.getId() << "|"
-             << t.getDate() << "|"
-             << t.getAmount() << "|"
-             << t.getCategory() << "|"
-             << t.getType() << "|"
-             << t.getDescription() << endl;
-
-        current = current->next;
-    }
-
-    file.close();
-}
-
-// Load transactions from file
-void FileManager::loadTransactions(Ledger &ledger)
-{
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
     ifstream file("data/transactions.txt");
 
     if (!file.is_open())
         return;
 
     string line;
-<<<<<<< HEAD
     while (getline(file, line))
     {
         if (line.empty())
@@ -154,37 +118,11 @@ void FileManager::loadTransactions(Ledger &ledger)
                 // Robustness: skip malformed record and continue loading
             }
         }
-=======
-
-    while (getline(file, line))
-    {
-        stringstream ss(line);
-
-        string id, date, amount, category, type, description;
-
-        getline(ss, id, '|');
-        getline(ss, date, '|');
-        getline(ss, amount, '|');
-        getline(ss, category, '|');
-        getline(ss, type, '|');
-        getline(ss, description);
-
-        Transaction transaction(
-            stoi(id),
-            date,
-            stod(amount),
-            category,
-            type,
-            description);
-
-        ledger.addTransaction(transaction);
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
     }
 
     file.close();
 }
 
-<<<<<<< HEAD
 // Save users to file in format: userId|username|password
 void FileManager::saveUsers(const vector<User> &users)
 {
@@ -199,33 +137,18 @@ void FileManager::saveUsers(const vector<User> &users)
     {
         file << user.getUserId() << "|"
              << user.getUsername() << "|"
-=======
-// Save users
-void FileManager::saveUsers(const vector<User>& users)
-{
-    ofstream file("data/users.txt");
-
-    for (const auto &user : users)
-    {
-        file << user.getUsername() << "|"
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
              << user.getPassword() << endl;
     }
 
     file.close();
 }
 
-<<<<<<< HEAD
 // Load users from file in format: userId|username|password
-=======
-// Load users
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 vector<User> FileManager::loadUsers()
 {
     vector<User> users;
     ifstream file("data/users.txt");
 
-<<<<<<< HEAD
     if (!file.is_open())
         return users;
 
@@ -379,23 +302,4 @@ map<string, double> FileManager::loadBudgets(int userId)
     }
     file.close();
     return budgets;
-=======
-    string line;
-
-    while (getline(file, line))
-    {
-        stringstream ss(line);
-
-        string username, password;
-
-        getline(ss, username, '|');
-        getline(ss, password);
-
-        users.push_back(User(username, password));
-    }
-
-    file.close();
-
-    return users;
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
 }

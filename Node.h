@@ -6,7 +6,6 @@
 class Node
 {
 public:
-<<<<<<< HEAD
     Transaction *transaction;
     Node *prev;
     Node *next;
@@ -16,13 +15,3 @@ public:
 };
 
 #endif // NODE_H
-=======
-    Transaction transaction;
-    Node *prev;
-    Node *next;
-
-    Node(const Transaction &transaction);
-};
-
-#endif
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
