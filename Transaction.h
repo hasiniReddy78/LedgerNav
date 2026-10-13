@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-<<<<<<< HEAD
 #include "Account.h"
 
 using namespace std;
@@ -32,39 +31,10 @@ public:
     string getDate() const;
     double getAmount() const;
     string getCategory() const;
-=======
-
-using namespace std;
-
-class Transaction
-{
-private:
-    int id;
-    string date;
-    double amount;
-    string category;
-    string type;
-    string description;
-
-public:
-    // Constructors
-    Transaction();
-    Transaction(int id, string date, double amount,
-                string category, string type,
-                string description);
-
-    // Getters
-    int getId() const;
-    string getDate() const;
-    double getAmount() const;
-    string getCategory() const;
-    string getType() const;
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
     string getDescription() const;
 
     // Setters
     void setId(int id);
-<<<<<<< HEAD
     void setUserId(int userId);
     void setDate(const string &date);
     void setAmount(double amount);
@@ -131,16 +101,3 @@ public:
 };
 
 #endif // TRANSACTION_H
-=======
-    void setDate(string date);
-    void setAmount(double amount);
-    void setCategory(string category);
-    void setType(string type);
-    void setDescription(string description);
-
-    // Display transaction
-    void display() const;
-};
-
-#endif
->>>>>>> 435c46a1aee22335a79412aecc6d4a1e06817e74
